@@ -2,19 +2,19 @@
   <nav class="navbar navbar-light">
     <div class="container">
       <router-link class="navbar-brand" :to="{ name: 'home' }">
-        conduit
+        Popcorns
       </router-link>
       <ul v-if="!isAuthenticated" class="nav navbar-nav pull-xs-right">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link
             class="nav-link"
             active-class="active"
             exact
             :to="{ name: 'home' }"
           >
-            Home
+            HOME
           </router-link>
-        </li>
+        </li> -->
         <li class="nav-item">
           <router-link
             class="nav-link"
@@ -22,7 +22,7 @@
             exact
             :to="{ name: 'login' }"
           >
-            <i class="ion-compose"></i>Sign in
+            LOG IN
           </router-link>
         </li>
         <li class="nav-item">
@@ -32,40 +32,41 @@
             exact
             :to="{ name: 'register' }"
           >
-            <i class="ion-compose"></i>Sign up
+            REGISTER
           </router-link>
         </li>
       </ul>
       <ul v-else class="nav navbar-nav pull-xs-right">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link
             class="nav-link"
             active-class="active"
             exact
             :to="{ name: 'home' }"
           >
-            Home
+            HOME
           </router-link>
-        </li>
+        </li> -->
         <li class="nav-item">
           <router-link
-            class="nav-link"
+            style="margin-top: 11%"
+            class="btn btn-sm btn-primary"
             active-class="active"
             :to="{ name: 'article-edit' }"
           >
-            <i class="ion-compose"></i>&nbsp;New Article
+            NEW QUESTION
           </router-link>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link
             class="nav-link"
             active-class="active"
             exact
             :to="{ name: 'settings' }"
           >
-            <i class="ion-gear-a"></i>&nbsp;Settings
+            <i class="ion-gear-a"></i>&nbsp;SETTINGS
           </router-link>
-        </li>
+        </li> -->
         <li class="nav-item" v-if="currentUser.username">
           <router-link
             class="nav-link"
@@ -76,7 +77,12 @@
               params: { username: currentUser.username }
             }"
           >
-            {{ currentUser.username }}
+            <img
+              :src="currentUser.image"
+              class="user-img"
+              style="width: 39px; height: 39px; border-radius: 50%"
+            />
+            <!-- {{ currentUser.username }} -->
           </router-link>
         </li>
       </ul>

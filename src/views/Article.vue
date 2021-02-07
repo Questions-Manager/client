@@ -21,11 +21,18 @@
         </div>
       </div>
       <hr />
-      <div class="article-actions">
+      <!-- <div class="article-actions">
         <RwvArticleMeta :article="article" :actions="true"></RwvArticleMeta>
-      </div>
+      </div> -->
       <div class="row">
-        <div class="col-xs-12 col-md-8 offset-md-2">
+        <div class="col-xs-12 col-md-12">
+          <RwvComment
+            v-for="(comment, index) in comments"
+            :slug="slug"
+            :comment="comment"
+            :key="index"
+          >
+          </RwvComment>
           <RwvCommentEditor
             v-if="isAuthenticated"
             :slug="slug"
@@ -38,13 +45,6 @@
             <router-link :to="{ name: 'register' }">sign up</router-link>
             to add comments on this article.
           </p>
-          <RwvComment
-            v-for="(comment, index) in comments"
-            :slug="slug"
-            :comment="comment"
-            :key="index"
-          >
-          </RwvComment>
         </div>
       </div>
     </div>

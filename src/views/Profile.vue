@@ -7,12 +7,19 @@
             <img :src="profile.image" class="user-img" />
             <h4>{{ profile.username }}</h4>
             <p>{{ profile.bio }}</p>
-            <div v-if="isCurrentUser()">
+            <div v-if="isCurrentUser()" style="text-align: center;">
+              <button
+                @click="logout"
+                class="btn btn-sm btn-outline-secondary action-btn"
+                style="margin-left: 10px;"
+              >
+                Log out
+              </button>
               <router-link
                 class="btn btn-sm btn-outline-secondary action-btn"
                 :to="{ name: 'settings' }"
               >
-                <i class="ion-gear-a"></i> Edit Profile Settings
+                <i class="ion-gear-a"></i> Edit
               </router-link>
             </div>
             <div v-else>
@@ -42,7 +49,7 @@
       <div class="row">
         <div class="col-xs-12 col-md-10 offset-md-1">
           <div class="articles-toggle">
-            <ul class="nav nav-pills outline-active">
+            <!-- <ul class="nav nav-pills outline-active">
               <li class="nav-item">
                 <router-link
                   class="nav-link"
@@ -50,7 +57,7 @@
                   exact
                   :to="{ name: 'profile' }"
                 >
-                  My Articles
+                  My Questions
                 </router-link>
               </li>
               <li class="nav-item">
@@ -60,10 +67,10 @@
                   exact
                   :to="{ name: 'profile-favorites' }"
                 >
-                  Favorited Articles
+                  Favorited Questions
                 </router-link>
               </li>
-            </ul>
+            </ul> -->
           </div>
           <router-view></router-view>
         </div>
@@ -79,6 +86,7 @@ import {
   FETCH_PROFILE_FOLLOW,
   FETCH_PROFILE_UNFOLLOW
 } from "@/store/actions.type";
+import { LOGOUT } from "@/store/actions.type";
 
 export default {
   name: "RwvProfile",
@@ -101,6 +109,11 @@ export default {
     },
     unfollow() {
       this.$store.dispatch(FETCH_PROFILE_UNFOLLOW, this.$route.params);
+    },
+    logout() {
+      this.$store.dispatch(LOGOUT).then(() => {
+        this.$router.push({ name: "home" });
+      });
     }
   },
   watch: {

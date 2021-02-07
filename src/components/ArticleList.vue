@@ -81,6 +81,9 @@ export default {
       if (this.isLoading || this.articlesCount <= this.itemsPerPage) {
         return [];
       }
+      if (!this.articlesCount) {
+        return [];
+      }
       return [
         ...Array(Math.ceil(this.articlesCount / this.itemsPerPage)).keys()
       ].map(e => e + 1);

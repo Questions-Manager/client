@@ -17,6 +17,9 @@ const state = {
 
 const getters = {
   currentUser(state) {
+    if (state.user && !state.user.image) {
+      state.user.image = "/img/avatar.png";
+    }
     return state.user;
   },
   isAuthenticated(state) {
@@ -68,9 +71,9 @@ const actions = {
     }
   },
   [UPDATE_USER](context, payload) {
-    const { email, username, password, image, bio } = payload;
+    const { username, password, image, bio } = payload;
     const user = {
-      email,
+      // email,
       username,
       bio,
       image
@@ -79,7 +82,7 @@ const actions = {
       user.password = password;
     }
 
-    return ApiService.put("user", user).then(({ data }) => {
+    return ApiService.put("user", { user: user }).then(({ data }) => {
       context.commit(SET_AUTH, data.user);
       return data;
     });

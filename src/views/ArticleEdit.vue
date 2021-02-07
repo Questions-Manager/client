@@ -11,23 +11,23 @@
                   type="text"
                   class="form-control form-control-lg"
                   v-model="article.title"
-                  placeholder="Article Title"
+                  placeholder="Your question here..."
                 />
               </fieldset>
-              <fieldset class="form-group">
+              <!-- <fieldset class="form-group">
                 <input
                   type="text"
                   class="form-control"
                   v-model="article.description"
                   placeholder="What's this article about?"
                 />
-              </fieldset>
+              </fieldset> -->
               <fieldset class="form-group">
                 <textarea
                   class="form-control"
                   rows="8"
                   v-model="article.body"
-                  placeholder="Write your article (in markdown)"
+                  placeholder="Additional context (markdown supported)"
                 >
                 </textarea>
               </fieldset>
@@ -35,7 +35,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Enter tags"
+                  placeholder="Tags"
                   v-model="tagInput"
                   @keypress.enter.prevent="addTag(tagInput)"
                 />
@@ -56,7 +56,7 @@
               class="btn btn-lg pull-xs-right btn-primary"
               type="submit"
             >
-              Publish Article
+              Save
             </button>
           </form>
         </div>
