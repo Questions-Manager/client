@@ -4,6 +4,16 @@
       <router-link class="navbar-brand" :to="{ name: 'home' }">
         Popcorns
       </router-link>
+      <span v-if="isAuthenticated">
+        <router-link
+          style="margin-top: 7px"
+          class="btn btn-sm btn-primary"
+          active-class="active"
+          :to="{ name: 'question-edit' }"
+        >
+          NEW QUESTION
+        </router-link>
+      </span>
       <ul v-if="!isAuthenticated" class="nav navbar-nav pull-xs-right">
         <!-- <li class="nav-item">
           <router-link
@@ -47,16 +57,6 @@
             HOME
           </router-link>
         </li> -->
-        <li class="nav-item">
-          <router-link
-            style="margin-top: 11%"
-            class="btn btn-sm btn-primary"
-            active-class="active"
-            :to="{ name: 'question-edit' }"
-          >
-            NEW QUESTION
-          </router-link>
-        </li>
         <!-- <li class="nav-item">
           <router-link
             class="nav-link"

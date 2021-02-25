@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isAuthenticated">
     <div v-if="isLoading" class="question-preview">Loading questions...</div>
     <div v-else>
       <div v-if="questions.length === 0" class="question-preview">
@@ -88,7 +88,12 @@ export default {
         ...Array(Math.ceil(this.questionsCount / this.itemsPerPage)).keys()
       ].map(e => e + 1);
     },
-    ...mapGetters(["questionsCount", "isLoading", "questions"])
+    ...mapGetters([
+      "questionsCount",
+      "isLoading",
+      "questions",
+      "isAuthenticated"
+    ])
   },
   watch: {
     currentPage(newValue) {
