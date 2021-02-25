@@ -3,7 +3,7 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-6 offset-md-3 col-xs-12">
-          <h1 class="text-xs-center">Your Settings</h1>
+          <h1 class="text-xs-center">Settings</h1>
           <form @submit.prevent="updateSettings()">
             <fieldset>
               <fieldset class="form-group">
@@ -22,14 +22,14 @@
                   placeholder="Your username"
                 />
               </fieldset>
-              <fieldset class="form-group">
+              <!-- <fieldset class="form-group">
                 <textarea
                   class="form-control form-control-lg"
                   rows="8"
                   v-model="currentUser.bio"
                   placeholder="Short bio about you"
                 ></textarea>
-              </fieldset>
+              </fieldset> -->
               <fieldset class="form-group">
                 <input
                   class="form-control form-control-lg"
@@ -47,7 +47,7 @@
                 />
               </fieldset>
               <button class="btn btn-lg btn-primary pull-xs-right">
-                Update Settings
+                Save
               </button>
             </fieldset>
           </form>

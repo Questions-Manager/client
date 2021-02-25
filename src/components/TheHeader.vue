@@ -73,7 +73,7 @@
             active-class="active"
             exact
             :to="{
-              name: 'profile',
+              name: 'settings',
               params: { username: currentUser.username }
             }"
           >

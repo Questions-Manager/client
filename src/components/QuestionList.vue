@@ -2,7 +2,7 @@
   <div v-if="isAuthenticated">
     <div v-if="isLoading" class="question-preview">Loading questions...</div>
     <div v-else>
-      <div v-if="questions.length === 0" class="question-preview">
+      <div v-if="questions && questions.length === 0" class="question-preview">
         No questions are here... yet.
       </div>
       <RwvQuestionPreview
