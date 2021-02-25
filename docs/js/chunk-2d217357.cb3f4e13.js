@@ -105,7 +105,7 @@
                   "div",
                   { staticClass: "col-xs-12 col-md-10 offset-md-1" },
                   [
-                    s("div", { staticClass: "articles-toggle" }),
+                    s("div", { staticClass: "questions-toggle" }),
                     s("router-view")
                   ],
                   1

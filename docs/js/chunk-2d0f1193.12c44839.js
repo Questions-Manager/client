@@ -12,7 +12,7 @@
             "div",
             { staticClass: "profile-page" },
             [
-              r("RwvArticleList", {
+              r("RwvQuestionList", {
                 attrs: { author: e.author, "items-per-page": 5 }
               })
             ],
@@ -22,8 +22,8 @@
         a = [],
         s = r("64e5"),
         i = {
-          name: "RwvProfileArticles",
-          components: { RwvArticleList: s["a"] },
+          name: "RwvProfileQuestions",
+          components: { RwvQuestionList: s["a"] },
           computed: {
             author: function() {
               return this.$route.params.username;

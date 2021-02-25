@@ -22,7 +22,7 @@
                         on: {
                           submit: function(e) {
                             return (
-                              e.preventDefault(), t.onPublish(t.article.slug)
+                              e.preventDefault(), t.onPublish(t.question.slug)
                             );
                           }
                         }
@@ -35,8 +35,8 @@
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: t.article.title,
-                                  expression: "article.title"
+                                  value: t.question.title,
+                                  expression: "question.title"
                                 }
                               ],
                               staticClass: "form-control form-control-lg",
@@ -44,11 +44,11 @@
                                 type: "text",
                                 placeholder: "Your question here..."
                               },
-                              domProps: { value: t.article.title },
+                              domProps: { value: t.question.title },
                               on: {
                                 input: function(e) {
                                   e.target.composing ||
-                                    t.$set(t.article, "title", e.target.value);
+                                    t.$set(t.question, "title", e.target.value);
                                 }
                               }
                             })
@@ -59,8 +59,8 @@
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: t.article.body,
-                                  expression: "article.body"
+                                  value: t.question.body,
+                                  expression: "question.body"
                                 }
                               ],
                               staticClass: "form-control",
@@ -69,11 +69,11 @@
                                 placeholder:
                                   "Additional context (markdown supported)"
                               },
-                              domProps: { value: t.article.body },
+                              domProps: { value: t.question.body },
                               on: {
                                 input: function(e) {
                                   e.target.composing ||
-                                    t.$set(t.article, "body", e.target.value);
+                                    t.$set(t.question, "body", e.target.value);
                                 }
                               }
                             })
@@ -108,7 +108,7 @@
                             r(
                               "div",
                               { staticClass: "tag-list" },
-                              t._l(t.article.tagList, function(e, n) {
+                              t._l(t.question.tagList, function(e, n) {
                                 return r(
                                   "span",
                                   {
@@ -192,9 +192,9 @@
         return t;
       }
       var f = {
-          name: "RwvArticleEdit",
+          name: "RwvQuestionEdit",
           components: { RwvListErrors: u["a"] },
-          props: { previousArticle: { type: Object, required: !1 } },
+          props: { previousQuestion: { type: Object, required: !1 } },
           beforeRouteUpdate: (function() {
             var t = Object(o["a"])(
               regeneratorRuntime.mark(function t(e, r, n) {
@@ -235,7 +235,7 @@
                           c["a"].dispatch(
                             l["l"],
                             e.params.slug,
-                            e.params.previousArticle
+                            e.params.previousQuestion
                           )
                         );
                       case 5:
@@ -277,7 +277,7 @@
           data: function() {
             return { tagInput: null, inProgress: !1, errors: {} };
           },
-          computed: d({}, Object(i["b"])(["article"])),
+          computed: d({}, Object(i["b"])(["question"])),
           methods: {
             onPublish: function(t) {
               var e = this,
@@ -289,8 +289,8 @@
                     var r = t.data;
                     (e.inProgress = !1),
                       e.$router.push({
-                        name: "article",
-                        params: { slug: r.article.slug }
+                        name: "question",
+                        params: { slug: r.question.slug }
                       });
                   })
                   .catch(function(t) {

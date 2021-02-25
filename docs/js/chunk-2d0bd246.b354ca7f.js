@@ -12,7 +12,7 @@
             "div",
             { staticClass: "profile-page" },
             [
-              r("RwvArticleList", {
+              r("RwvQuestionList", {
                 attrs: { favorited: e.favorited, "items-per-page": 5 }
               })
             ],
@@ -23,7 +23,7 @@
         n = r("64e5"),
         s = {
           name: "RwvProfileFavorited",
-          components: { RwvArticleList: n["a"] },
+          components: { RwvQuestionList: n["a"] },
           computed: {
             favorited: function() {
               return this.$route.params.username;

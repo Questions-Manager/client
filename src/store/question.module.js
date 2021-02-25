@@ -1,6 +1,6 @@
 import Vue from "vue";
 import {
-  ArticlesService,
+  QuestionsService,
   CommentsService,
   FavoriteService
 } from "@/common/api.service";
@@ -28,7 +28,7 @@ import {
 } from "./mutations.type";
 
 const initialState = {
-  article: {
+  question: {
     author: {},
     title: "",
     description: "",
@@ -41,17 +41,17 @@ const initialState = {
 export const state = { ...initialState };
 
 export const actions = {
-  async [FETCH_ARTICLE](context, articleSlug, prevArticle) {
-    // avoid extronuous network call if article exists
-    if (prevArticle !== undefined) {
-      return context.commit(SET_ARTICLE, prevArticle);
+  async [FETCH_ARTICLE](context, questionSlug, prevQuestion) {
+    // avoid extronuous network call if question exists
+    if (prevQuestion !== undefined) {
+      return context.commit(SET_ARTICLE, prevQuestion);
     }
-    const { data } = await ArticlesService.get(articleSlug);
-    context.commit(SET_ARTICLE, data.article);
+    const { data } = await QuestionsService.get(questionSlug);
+    context.commit(SET_ARTICLE, data.question);
     return data;
   },
-  async [FETCH_COMMENTS](context, articleSlug) {
-    const { data } = await CommentsService.get(articleSlug);
+  async [FETCH_COMMENTS](context, questionSlug) {
+    const { data } = await CommentsService.get(questionSlug);
     context.commit(SET_COMMENTS, data.comments);
     return data.comments;
   },
@@ -65,23 +65,23 @@ export const actions = {
   },
   async [FAVORITE_ADD](context, slug) {
     const { data } = await FavoriteService.add(slug);
-    context.commit(UPDATE_ARTICLE_IN_LIST, data.article, { root: true });
-    context.commit(SET_ARTICLE, data.article);
+    context.commit(UPDATE_ARTICLE_IN_LIST, data.question, { root: true });
+    context.commit(SET_ARTICLE, data.question);
   },
   async [FAVORITE_REMOVE](context, slug) {
     const { data } = await FavoriteService.remove(slug);
-    // Update list as well. This allows us to favorite an article in the Home view.
-    context.commit(UPDATE_ARTICLE_IN_LIST, data.article, { root: true });
-    context.commit(SET_ARTICLE, data.article);
+    // Update list as well. This allows us to favorite an question in the Home view.
+    context.commit(UPDATE_ARTICLE_IN_LIST, data.question, { root: true });
+    context.commit(SET_ARTICLE, data.question);
   },
   [ARTICLE_PUBLISH]({ state }) {
-    return ArticlesService.create(state.article);
+    return QuestionsService.create(state.question);
   },
   [ARTICLE_DELETE](context, slug) {
-    return ArticlesService.destroy(slug);
+    return QuestionsService.destroy(slug);
   },
   [ARTICLE_EDIT]({ state }) {
-    return ArticlesService.update(state.article.slug, state.article);
+    return QuestionsService.update(state.question.slug, state.question);
   },
   [ARTICLE_EDIT_ADD_TAG](context, tag) {
     context.commit(TAG_ADD, tag);
@@ -96,17 +96,17 @@ export const actions = {
 
 /* eslint no-param-reassign: ["error", { "props": false }] */
 export const mutations = {
-  [SET_ARTICLE](state, article) {
-    state.article = article;
+  [SET_ARTICLE](state, question) {
+    state.question = question;
   },
   [SET_COMMENTS](state, comments) {
     state.comments = comments;
   },
   [TAG_ADD](state, tag) {
-    state.article.tagList = state.article.tagList.concat([tag]);
+    state.question.tagList = state.question.tagList.concat([tag]);
   },
   [TAG_REMOVE](state, tag) {
-    state.article.tagList = state.article.tagList.filter(t => t !== tag);
+    state.question.tagList = state.question.tagList.filter(t => t !== tag);
   },
   [RESET_STATE]() {
     for (let f in state) {
@@ -116,8 +116,8 @@ export const mutations = {
 };
 
 const getters = {
-  article(state) {
-    return state.article;
+  question(state) {
+    return state.question;
   },
   comments(state) {
     return state.comments;

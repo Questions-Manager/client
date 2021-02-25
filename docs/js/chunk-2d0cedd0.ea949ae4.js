@@ -11,7 +11,7 @@
           return a(
             "div",
             { staticClass: "home-tag" },
-            [a("RwvArticleList", { attrs: { tag: t.tag } })],
+            [a("RwvQuestionList", { attrs: { tag: t.tag } })],
             1
           );
         },
@@ -19,7 +19,7 @@
         c = a("64e5"),
         r = {
           name: "RwvHomeTag",
-          components: { RwvArticleList: c["a"] },
+          components: { RwvQuestionList: c["a"] },
           computed: {
             tag: function() {
               return this.$route.params.tag;

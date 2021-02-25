@@ -55,23 +55,23 @@ export const TagsService = {
   }
 };
 
-export const ArticlesService = {
+export const QuestionsService = {
   query(type, params) {
-    return ApiService.query("articles" + (type === "feed" ? "/feed" : ""), {
+    return ApiService.query("questions" + (type === "feed" ? "/feed" : ""), {
       params: params
     });
   },
   get(slug) {
-    return ApiService.get("articles", slug);
+    return ApiService.get("questions", slug);
   },
   create(params) {
-    return ApiService.post("articles", { article: params });
+    return ApiService.post("questions", { question: params });
   },
   update(slug, params) {
-    return ApiService.update("articles", slug, { article: params });
+    return ApiService.update("questions", slug, { question: params });
   },
   destroy(slug) {
-    return ApiService.delete(`articles/${slug}`);
+    return ApiService.delete(`questions/${slug}`);
   }
 };
 
@@ -79,28 +79,28 @@ export const CommentsService = {
   get(slug) {
     if (typeof slug !== "string") {
       throw new Error(
-        "[RWV] CommentsService.get() article slug required to fetch comments"
+        "[RWV] CommentsService.get() question slug required to fetch comments"
       );
     }
-    return ApiService.get("articles", `${slug}/comments`);
+    return ApiService.get("questions", `${slug}/comments`);
   },
 
   post(slug, payload) {
-    return ApiService.post(`articles/${slug}/comments`, {
+    return ApiService.post(`questions/${slug}/comments`, {
       comment: { body: payload }
     });
   },
 
   destroy(slug, commentId) {
-    return ApiService.delete(`articles/${slug}/comments/${commentId}`);
+    return ApiService.delete(`questions/${slug}/comments/${commentId}`);
   }
 };
 
 export const FavoriteService = {
   add(slug) {
-    return ApiService.post(`articles/${slug}/favorite`);
+    return ApiService.post(`questions/${slug}/favorite`);
   },
   remove(slug) {
-    return ApiService.delete(`articles/${slug}/favorite`);
+    return ApiService.delete(`questions/${slug}/favorite`);
   }
 };

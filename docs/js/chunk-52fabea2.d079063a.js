@@ -51,7 +51,7 @@
               .replace("def", "\\n+(?=" + r.def.source + ")")
               .getRegex()),
             (r._tag =
-              "address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|meta|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul"),
+              "address|question|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|meta|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul"),
             (r._comment = /<!--(?!-?>)[\s\S]*?-->/),
             (r.html = h(r.html, "i")
               .replace("comment", r._comment)
@@ -1096,32 +1096,32 @@
           var e = this,
             t = e.$createElement,
             r = e._self._c || t;
-          return r("div", { staticClass: "article-page" }, [
+          return r("div", { staticClass: "question-page" }, [
             r("div", { staticClass: "banner" }, [
               r(
                 "div",
                 { staticClass: "container" },
                 [
-                  r("h1", [e._v(e._s(e.article.title))]),
-                  r("RwvArticleMeta", {
-                    attrs: { article: e.article, actions: !0 }
+                  r("h1", [e._v(e._s(e.question.title))]),
+                  r("RwvQuestionMeta", {
+                    attrs: { question: e.question, actions: !0 }
                   })
                 ],
                 1
               )
             ]),
             r("div", { staticClass: "container page" }, [
-              r("div", { staticClass: "row article-content" }, [
+              r("div", { staticClass: "row question-content" }, [
                 r("div", { staticClass: "col-xs-12" }, [
                   r("div", {
                     domProps: {
-                      innerHTML: e._s(e.parseMarkdown(e.article.body))
+                      innerHTML: e._s(e.parseMarkdown(e.question.body))
                     }
                   }),
                   r(
                     "ul",
                     { staticClass: "tag-list" },
-                    e._l(e.article.tagList, function(e, t) {
+                    e._l(e.question.tagList, function(e, t) {
                       return r(
                         "li",
                         { key: e + t },
@@ -1174,7 +1174,7 @@
                               [e._v("sign up")]
                             ),
                             e._v(
-                              "\n          to add comments on this article.\n        "
+                              "\n          to add comments on this question.\n        "
                             )
                           ],
                           1
@@ -1431,10 +1431,10 @@
         return e;
       }
       var P = {
-          name: "rwv-article",
+          name: "rwv-question",
           props: { slug: { type: String, required: !0 } },
           components: {
-            RwvArticleMeta: u["a"],
+            RwvQuestionMeta: u["a"],
             RwvComment: v,
             RwvCommentEditor: A,
             RwvTag: S["a"]
@@ -1450,7 +1450,7 @@
           computed: R(
             {},
             Object(a["b"])([
-              "article",
+              "question",
               "currentUser",
               "comments",
               "isAuthenticated"
@@ -1512,31 +1512,31 @@
             r = e._self._c || t;
           return r(
             "div",
-            { staticClass: "article-meta" },
+            { staticClass: "question-meta" },
             [
               r("div", { staticClass: "info" }, [
                 r("span", { staticClass: "date" }, [
-                  e._v(e._s(e._f("date")(e.article.createdAt)))
+                  e._v(e._s(e._f("date")(e.question.createdAt)))
                 ])
               ]),
               e.actions
-                ? r("rwv-article-actions", {
-                    attrs: { article: e.article, canModify: e.isCurrentUser() }
+                ? r("rwv-question-actions", {
+                    attrs: { question: e.question, canModify: e.isCurrentUser() }
                   })
                 : r(
                     "button",
                     {
                       staticClass: "btn btn-sm pull-xs-right",
                       class: {
-                        "btn-primary": e.article.favorited,
-                        "btn-outline-primary": !e.article.favorited
+                        "btn-primary": e.question.favorited,
+                        "btn-outline-primary": !e.question.favorited
                       },
                       on: { click: e.toggleFavorite }
                     },
                     [
                       r("i", { staticClass: "ion-heart" }),
                       r("span", { staticClass: "counter" }, [
-                        e._v(" " + e._s(e.article.favoritesCount) + " ")
+                        e._v(" " + e._s(e.question.favoritesCount) + " ")
                       ])
                     ]
                   )
@@ -1559,7 +1559,7 @@
                     "router-link",
                     {
                       staticClass: "btn btn-sm btn-outline-secondary",
-                      attrs: { to: e.editArticleLink }
+                      attrs: { to: e.editQuestionLink }
                     },
                     [
                       r("i", { staticClass: "ion-edit" }),
@@ -1571,7 +1571,7 @@
                     "button",
                     {
                       staticClass: "btn btn-outline-danger btn-sm",
-                      on: { click: e.deleteArticle }
+                      on: { click: e.deleteQuestion }
                     },
                     [
                       r("i", { staticClass: "ion-trash-a" }),
@@ -1608,7 +1608,7 @@
                     r("i", { staticClass: "ion-heart" }),
                     r("span", [e._v(" ")]),
                     r("span", {
-                      domProps: { textContent: e._s(e.favoriteArticleLabel) }
+                      domProps: { textContent: e._s(e.favoriteQuestionLabel) }
                     }),
                     r("span", [e._v(" ")]),
                     r("span", {
@@ -1654,52 +1654,52 @@
         return e;
       }
       var g = {
-          name: "RwvArticleActions",
+          name: "RwvQuestionActions",
           props: {
-            article: { type: Object, required: !0 },
+            question: { type: Object, required: !0 },
             canModify: { type: Boolean, required: !0 }
           },
           computed: h({}, Object(a["b"])(["profile", "isAuthenticated"]), {
-            editArticleLink: function() {
+            editQuestionLink: function() {
               return {
-                name: "article-edit",
-                params: { slug: this.article.slug }
+                name: "question-edit",
+                params: { slug: this.question.slug }
               };
             },
             toggleFavoriteButtonClasses: function() {
               return {
-                "btn-primary": this.article.favorited,
-                "btn-outline-primary": !this.article.favorited
+                "btn-primary": this.question.favorited,
+                "btn-outline-primary": !this.question.favorited
               };
             },
             followUserLabel: function() {
               return ""
                 .concat(this.profile.following ? "Unfollow" : "Follow", " ")
-                .concat(this.article.author.username);
+                .concat(this.question.author.username);
             },
-            favoriteArticleLabel: function() {
-              return this.article.favorited
-                ? "Unfavorite Article"
-                : "Favorite Article";
+            favoriteQuestionLabel: function() {
+              return this.question.favorited
+                ? "Unfavorite Question"
+                : "Favorite Question";
             },
             favoriteCounter: function() {
-              return "(".concat(this.article.favoritesCount, ")");
+              return "(".concat(this.question.favoritesCount, ")");
             }
           }),
           methods: {
             toggleFavorite: function() {
               if (this.isAuthenticated) {
-                var e = this.article.favorited ? u["k"] : u["j"];
-                this.$store.dispatch(e, this.article.slug);
+                var e = this.question.favorited ? u["k"] : u["j"];
+                this.$store.dispatch(e, this.question.slug);
               } else this.$router.push({ name: "login" });
             },
             toggleFollow: function() {
               if (this.isAuthenticated) {
-                var e = this.article.following ? u["q"] : u["p"];
+                var e = this.question.following ? u["q"] : u["p"];
                 this.$store.dispatch(e, { username: this.profile.username });
               } else this.$router.push({ name: "login" });
             },
-            deleteArticle: (function() {
+            deleteQuestion: (function() {
               var e = Object(c["a"])(
                 regeneratorRuntime.mark(function e() {
                   return regeneratorRuntime.wrap(
@@ -1710,7 +1710,7 @@
                             return (
                               (e.prev = 0),
                               (e.next = 3),
-                              this.$store.dispatch(u["a"], this.article.slug)
+                              this.$store.dispatch(u["a"], this.question.slug)
                             );
                           case 3:
                             this.$router.push("/"), (e.next = 9);
@@ -1773,10 +1773,10 @@
         return e;
       }
       var v = {
-          name: "RwvArticleMeta",
-          components: { RwvArticleActions: b },
+          name: "RwvQuestionMeta",
+          components: { RwvQuestionActions: b },
           props: {
-            article: { type: Object, required: !0 },
+            question: { type: Object, required: !0 },
             actions: { type: Boolean, required: !1, default: !1 }
           },
           computed: y({}, Object(a["b"])(["currentUser", "isAuthenticated"])),
@@ -1784,14 +1784,14 @@
             isCurrentUser: function() {
               return (
                 !(
-                  !this.currentUser.username || !this.article.author.username
-                ) && this.currentUser.username === this.article.author.username
+                  !this.currentUser.username || !this.question.author.username
+                ) && this.currentUser.username === this.question.author.username
               );
             },
             toggleFavorite: function() {
               if (this.isAuthenticated) {
-                var e = this.article.favorited ? u["k"] : u["j"];
-                this.$store.dispatch(e, this.article.slug);
+                var e = this.question.favorited ? u["k"] : u["j"];
+                this.$store.dispatch(e, this.question.slug);
               } else this.$router.push({ name: "login" });
             }
           }

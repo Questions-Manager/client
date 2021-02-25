@@ -1,52 +1,52 @@
 <template>
-  <div class="article-meta">
+  <div class="question-meta">
     <!-- <router-link v-if="isCurrentUser()"
-      :to="{ name: 'profile', params: { username: article.author.username } }"
+      :to="{ name: 'profile', params: { username: question.author.username } }"
     >
-      <img v-if="article.author.image" :src="article.author.image" />
+      <img v-if="question.author.image" :src="question.author.image" />
       <img v-else src="/img/avatar.png" />
     </router-link> -->
     <div class="info">
       <!-- <router-link
-        :to="{ name: 'profile', params: { username: article.author.username } }"
+        :to="{ name: 'profile', params: { username: question.author.username } }"
         class="author"
       >
-        {{ article.author.username }}
+        {{ question.author.username }}
       </router-link> -->
-      <span class="date">{{ article.createdAt | date }}</span>
+      <span class="date">{{ question.createdAt | date }}</span>
     </div>
-    <rwv-article-actions
+    <rwv-question-actions
       v-if="actions"
-      :article="article"
+      :question="question"
       :canModify="isCurrentUser()"
-    ></rwv-article-actions>
+    ></rwv-question-actions>
     <button
       v-else
       class="btn btn-sm pull-xs-right"
       @click="toggleFavorite"
       :class="{
-        'btn-primary': article.favorited,
-        'btn-outline-primary': !article.favorited
+        'btn-primary': question.favorited,
+        'btn-outline-primary': !question.favorited
       }"
     >
       <i class="ion-heart"></i>
-      <span class="counter"> {{ article.favoritesCount }} </span>
+      <span class="counter"> {{ question.favoritesCount }} </span>
     </button>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import RwvArticleActions from "@/components/ArticleActions";
+import RwvQuestionActions from "@/components/QuestionActions";
 import { FAVORITE_ADD, FAVORITE_REMOVE } from "@/store/actions.type";
 
 export default {
-  name: "RwvArticleMeta",
+  name: "RwvQuestionMeta",
   components: {
-    RwvArticleActions
+    RwvQuestionActions
   },
   props: {
-    article: {
+    question: {
       type: Object,
       required: true
     },
@@ -61,8 +61,8 @@ export default {
   },
   methods: {
     isCurrentUser() {
-      if (this.currentUser.username && this.article.author.username) {
-        return this.currentUser.username === this.article.author.username;
+      if (this.currentUser.username && this.question.author.username) {
+        return this.currentUser.username === this.question.author.username;
       }
       return false;
     },
@@ -71,8 +71,8 @@ export default {
         this.$router.push({ name: "login" });
         return;
       }
-      const action = this.article.favorited ? FAVORITE_REMOVE : FAVORITE_ADD;
-      this.$store.dispatch(action, this.article.slug);
+      const action = this.question.favorited ? FAVORITE_REMOVE : FAVORITE_ADD;
+      this.$store.dispatch(action, this.question.slug);
     }
   }
 };

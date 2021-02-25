@@ -181,10 +181,10 @@
       f = n("bd86"),
       d = n("5ce5"),
       m = n("6c33"),
-      p = "setArticles",
+      p = "setQuestions",
       h = "setLoading",
       b = "logOut",
-      v = "setArticle",
+      v = "setQuestion",
       g = "setUser",
       O = "setComments",
       w = "setError",
@@ -192,15 +192,15 @@
       k = "setTags",
       y = "addTag",
       P = "removeTag",
-      x = "updateArticleInList",
+      x = "updateQuestionInList",
       C = "resetModuleState",
-      A = { tags: [], articles: [], isLoading: !0, articlesCount: 0 },
+      A = { tags: [], questions: [], isLoading: !0, questionsCount: 0 },
       R = {
-        articlesCount: function(t) {
-          return t.articlesCount;
+        questionsCount: function(t) {
+          return t.questionsCount;
         },
-        articles: function(t) {
-          return t.articles;
+        questions: function(t) {
+          return t.questions;
         },
         isLoading: function(t) {
           return t.isLoading;
@@ -245,15 +245,15 @@
           t.isLoading = !0;
         }),
         Object(f["a"])(c, p, function(t, e) {
-          var n = e.articles,
-            r = e.articlesCount;
-          (t.articles = n), (t.articlesCount = r), (t.isLoading = !1);
+          var n = e.questions,
+            r = e.questionsCount;
+          (t.questions = n), (t.questionsCount = r), (t.isLoading = !1);
         }),
         Object(f["a"])(c, k, function(t, e) {
           t.tags = e;
         }),
         Object(f["a"])(c, x, function(t, e) {
-          t.articles = t.articles.map(function(t) {
+          t.questions = t.questions.map(function(t) {
             return t.slug !== e.slug
               ? t
               : ((t.favorited = e.favorited),
@@ -393,7 +393,7 @@
     }
     var N,
       W = {
-        article: {
+        question: {
           author: {},
           title: "",
           description: "",
@@ -427,7 +427,7 @@
                         return (
                           (c = t.sent),
                           (a = c.data),
-                          e.commit(v, a.article),
+                          e.commit(v, a.question),
                           t.abrupt("return", a)
                         );
                       case 8:
@@ -540,8 +540,8 @@
                       case 2:
                         (r = t.sent),
                           (c = r.data),
-                          e.commit(x, c.article, { root: !0 }),
-                          e.commit(v, c.article);
+                          e.commit(x, c.question, { root: !0 }),
+                          e.commit(v, c.question);
                       case 6:
                       case "end":
                         return t.stop();
@@ -569,8 +569,8 @@
                       case 2:
                         (r = t.sent),
                           (c = r.data),
-                          e.commit(x, c.article, { root: !0 }),
-                          e.commit(v, c.article);
+                          e.commit(x, c.question, { root: !0 }),
+                          e.commit(v, c.question);
                       case 6:
                       case "end":
                         return t.stop();
@@ -585,14 +585,14 @@
         ),
         Object(f["a"])(i, m["e"], function(t) {
           var e = t.state;
-          return d["a"].create(e.article);
+          return d["a"].create(e.question);
         }),
         Object(f["a"])(i, m["a"], function(t, e) {
           return d["a"].destroy(e);
         }),
         Object(f["a"])(i, m["b"], function(t) {
           var e = t.state;
-          return d["a"].update(e.article.slug, e.article);
+          return d["a"].update(e.question.slug, e.question);
         }),
         Object(f["a"])(i, m["c"], function(t, e) {
           t.commit(y, e);
@@ -608,16 +608,16 @@
       $ =
         ((u = {}),
         Object(f["a"])(u, v, function(t, e) {
-          t.article = e;
+          t.question = e;
         }),
         Object(f["a"])(u, O, function(t, e) {
           t.comments = e;
         }),
         Object(f["a"])(u, y, function(t, e) {
-          t.article.tagList = t.article.tagList.concat([e]);
+          t.question.tagList = t.question.tagList.concat([e]);
         }),
         Object(f["a"])(u, P, function(t, e) {
-          t.article.tagList = t.article.tagList.filter(function(t) {
+          t.question.tagList = t.question.tagList.filter(function(t) {
             return t !== e;
           });
         }),
@@ -626,8 +626,8 @@
         }),
         u),
       G = {
-        article: function(t) {
-          return t.article;
+        question: function(t) {
+          return t.question;
         },
         comments: function(t) {
           return t.comments;
@@ -683,7 +683,7 @@
       X = { state: Q, actions: B, mutations: K, getters: z };
     s["a"].use(l["a"]);
     e["a"] = new l["a"].Store({
-      modules: { home: S, auth: q, article: J, profile: X }
+      modules: { home: S, auth: q, question: J, profile: X }
     });
   },
   "56d7": function(t, e, n) {
@@ -733,7 +733,7 @@
                             staticStyle: { "margin-top": "11%" },
                             attrs: {
                               "active-class": "active",
-                              to: { name: "article-edit" }
+                              to: { name: "question-edit" }
                             }
                           },
                           [t._v("\n          NEW QUESTION\n        ")]
@@ -991,15 +991,15 @@
             ]
           },
           {
-            name: "article",
-            path: "/articles/:slug",
+            name: "question",
+            path: "/questions/:slug",
             component: function() {
               return n.e("chunk-52fabea2").then(n.bind(null, "3ad6"));
             },
             props: !0
           },
           {
-            name: "article-edit",
+            name: "question-edit",
             path: "/editor/:slug?",
             props: !0,
             component: function() {
@@ -1124,46 +1124,46 @@
         }),
       d = {
         query: function(t, e) {
-          return l.query("articles" + ("feed" === t ? "/feed" : ""), {
+          return l.query("questions" + ("feed" === t ? "/feed" : ""), {
             params: e
           });
         },
         get: function(t) {
-          return l.get("articles", t);
+          return l.get("questions", t);
         },
         create: function(t) {
-          return l.post("articles", { article: t });
+          return l.post("questions", { question: t });
         },
         update: function(t, e) {
-          return l.update("articles", t, { article: e });
+          return l.update("questions", t, { question: e });
         },
         destroy: function(t) {
-          return l.delete("articles/".concat(t));
+          return l.delete("questions/".concat(t));
         }
       },
       m = {
         get: function(t) {
           if ("string" !== typeof t)
             throw new Error(
-              "[RWV] CommentsService.get() article slug required to fetch comments"
+              "[RWV] CommentsService.get() question slug required to fetch comments"
             );
-          return l.get("articles", "".concat(t, "/comments"));
+          return l.get("questions", "".concat(t, "/comments"));
         },
         post: function(t, e) {
-          return l.post("articles/".concat(t, "/comments"), {
+          return l.post("questions/".concat(t, "/comments"), {
             comment: { body: e }
           });
         },
         destroy: function(t, e) {
-          return l.delete("articles/".concat(t, "/comments/").concat(e));
+          return l.delete("questions/".concat(t, "/comments/").concat(e));
         }
       },
       p = {
         add: function(t) {
-          return l.post("articles/".concat(t, "/favorite"));
+          return l.post("questions/".concat(t, "/favorite"));
         },
         remove: function(t) {
-          return l.delete("articles/".concat(t, "/favorite"));
+          return l.delete("questions/".concat(t, "/favorite"));
         }
       };
   },
@@ -1235,19 +1235,19 @@
       n.d(e, "v", function() {
         return P;
       });
-    var r = "publishArticle",
-      c = "deleteArticle",
-      a = "editArticle",
-      o = "addTagToArticle",
-      i = "removeTagFromArticle",
-      u = "resetArticleState",
+    var r = "publishQuestion",
+      c = "deleteQuestion",
+      a = "editQuestion",
+      o = "addTagToQuestion",
+      i = "removeTagFromQuestion",
+      u = "resetQuestionState",
       s = "checkAuth",
       l = "createComment",
       f = "destroyComment",
       d = "addFavorite",
       m = "removeFavorite",
-      p = "fetchArticle",
-      h = "fetchArticles",
+      p = "fetchQuestion",
+      h = "fetchQuestions",
       b = "fetchComments",
       v = "fetchProfile",
       g = "fetchProfileFollow",

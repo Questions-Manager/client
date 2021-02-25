@@ -1,17 +1,17 @@
 <template>
-  <div class="article-page">
+  <div class="question-page">
     <div class="banner">
       <div class="container">
-        <h1>{{ article.title }}</h1>
-        <RwvArticleMeta :article="article" :actions="true"></RwvArticleMeta>
+        <h1>{{ question.title }}</h1>
+        <RwvQuestionMeta :question="question" :actions="true"></RwvQuestionMeta>
       </div>
     </div>
     <div class="container page">
-      <div class="row article-content">
+      <div class="row question-content">
         <div class="col-xs-12">
-          <div v-html="parseMarkdown(article.body)"></div>
+          <div v-html="parseMarkdown(question.body)"></div>
           <ul class="tag-list">
-            <li v-for="(tag, index) of article.tagList" :key="tag + index">
+            <li v-for="(tag, index) of question.tagList" :key="tag + index">
               <RwvTag
                 :name="tag"
                 className="tag-default tag-pill tag-outline"
@@ -21,8 +21,8 @@
         </div>
       </div>
       <hr />
-      <!-- <div class="article-actions">
-        <RwvArticleMeta :article="article" :actions="true"></RwvArticleMeta>
+      <!-- <div class="question-actions">
+        <RwvQuestionMeta :question="question" :actions="true"></RwvQuestionMeta>
       </div> -->
       <div class="row">
         <div class="col-xs-12 col-md-12">
@@ -43,7 +43,7 @@
             <router-link :to="{ name: 'login' }">Sign in</router-link>
             or
             <router-link :to="{ name: 'register' }">sign up</router-link>
-            to add comments on this article.
+            to add comments on this question.
           </p>
         </div>
       </div>
@@ -55,14 +55,14 @@
 import { mapGetters } from "vuex";
 import marked from "marked";
 import store from "@/store";
-import RwvArticleMeta from "@/components/ArticleMeta";
+import RwvQuestionMeta from "@/components/QuestionMeta";
 import RwvComment from "@/components/Comment";
 import RwvCommentEditor from "@/components/CommentEditor";
 import RwvTag from "@/components/VTag";
 import { FETCH_ARTICLE, FETCH_COMMENTS } from "@/store/actions.type";
 
 export default {
-  name: "rwv-article",
+  name: "rwv-question",
   props: {
     slug: {
       type: String,
@@ -70,7 +70,7 @@ export default {
     }
   },
   components: {
-    RwvArticleMeta,
+    RwvQuestionMeta,
     RwvComment,
     RwvCommentEditor,
     RwvTag
@@ -84,7 +84,7 @@ export default {
     });
   },
   computed: {
-    ...mapGetters(["article", "currentUser", "comments", "isAuthenticated"])
+    ...mapGetters(["question", "currentUser", "comments", "isAuthenticated"])
   },
   methods: {
     parseMarkdown(content) {

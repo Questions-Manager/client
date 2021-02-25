@@ -11,7 +11,7 @@
           return n(
             "div",
             { staticClass: "home-my-feed" },
-            [n("RwvArticleList", { attrs: { type: "feed" } })],
+            [n("RwvQuestionList", { attrs: { type: "feed" } })],
             1
           );
         },
@@ -19,7 +19,7 @@
         c = n("64e5"),
         i = {
           name: "rwv-home-my-feed",
-          components: { RwvArticleList: c["a"] }
+          components: { RwvQuestionList: c["a"] }
         },
         l = i,
         r = n("2877"),

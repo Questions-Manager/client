@@ -1,17 +1,17 @@
 <template>
   <div class="profile-page">
-    <RwvArticleList :favorited="favorited" :items-per-page="5">
-    </RwvArticleList>
+    <RwvQuestionList :favorited="favorited" :items-per-page="5">
+    </RwvQuestionList>
   </div>
 </template>
 
 <script>
-import RwvArticleList from "@/components/ArticleList";
+import RwvQuestionList from "@/components/QuestionList";
 
 export default {
   name: "RwvProfileFavorited",
   components: {
-    RwvArticleList
+    RwvQuestionList
   },
   computed: {
     favorited() {

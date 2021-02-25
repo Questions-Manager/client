@@ -85,21 +85,21 @@
             r = t._self._c || e;
           return r("div", [
             t.isLoading
-              ? r("div", { staticClass: "article-preview" }, [
-                  t._v("Loading articles...")
+              ? r("div", { staticClass: "question-preview" }, [
+                  t._v("Loading questions...")
                 ])
               : r(
                   "div",
                   [
-                    0 === t.articles.length
-                      ? r("div", { staticClass: "article-preview" }, [
-                          t._v("\n      No articles are here... yet.\n    ")
+                    0 === t.questions.length
+                      ? r("div", { staticClass: "question-preview" }, [
+                          t._v("\n      No questions are here... yet.\n    ")
                         ])
                       : t._e(),
-                    t._l(t.articles, function(t, e) {
-                      return r("RwvArticlePreview", {
+                    t._l(t.questions, function(t, e) {
+                      return r("RwvQuestionPreview", {
                         key: t.title + e,
-                        attrs: { article: t }
+                        attrs: { question: t }
                       });
                     }),
                     r("VPagination", {
@@ -153,19 +153,19 @@
             r = t._self._c || e;
           return r(
             "div",
-            { staticClass: "article-preview" },
+            { staticClass: "question-preview" },
             [
               r(
                 "router-link",
-                { staticClass: "preview-link", attrs: { to: t.articleLink } },
+                { staticClass: "preview-link", attrs: { to: t.questionLink } },
                 [
-                  r("h1", { domProps: { textContent: t._s(t.article.title) } }),
-                  r("TagList", { attrs: { tags: t.article.tagList } })
+                  r("h1", { domProps: { textContent: t._s(t.question.title) } }),
+                  r("TagList", { attrs: { tags: t.question.tagList } })
                 ],
                 1
               ),
-              r("RwvArticleMeta", {
-                attrs: { isPreview: "", article: t.article }
+              r("RwvQuestionMeta", {
+                attrs: { isPreview: "", question: t.question }
               })
             ],
             1
@@ -197,12 +197,12 @@
         j = Object(_["a"])(A, P, O, !1, null, null, null),
         C = j.exports,
         x = {
-          name: "RwvArticlePreview",
-          components: { RwvArticleMeta: m["a"], TagList: C },
-          props: { article: { type: Object, required: !0 } },
+          name: "RwvQuestionPreview",
+          components: { RwvQuestionMeta: m["a"], TagList: C },
+          props: { question: { type: Object, required: !0 } },
           computed: {
-            articleLink: function() {
-              return { name: "article", params: { slug: this.article.slug } };
+            questionLink: function() {
+              return { name: "question", params: { slug: this.question.slug } };
             }
           }
         },
@@ -295,8 +295,8 @@
         return t;
       }
       var T = {
-          name: "RwvArticleList",
-          components: { RwvArticlePreview: N, VPagination: R },
+          name: "RwvQuestionList",
+          components: { RwvQuestionPreview: N, VPagination: R },
           props: {
             type: { type: String, required: !1, default: "all" },
             author: { type: String, required: !1 },
@@ -323,12 +323,12 @@
                 );
               },
               pages: function() {
-                return this.isLoading || this.articlesCount <= this.itemsPerPage
+                return this.isLoading || this.questionsCount <= this.itemsPerPage
                   ? []
-                  : this.articlesCount
+                  : this.questionsCount
                   ? g(
                       Array(
-                        Math.ceil(this.articlesCount / this.itemsPerPage)
+                        Math.ceil(this.questionsCount / this.itemsPerPage)
                       ).keys()
                     ).map(function(t) {
                       return t + 1;
@@ -336,31 +336,31 @@
                   : [];
               }
             },
-            Object(v["b"])(["articlesCount", "isLoading", "articles"])
+            Object(v["b"])(["questionsCount", "isLoading", "questions"])
           ),
           watch: {
             currentPage: function(t) {
               (this.listConfig.filters.offset = (t - 1) * this.itemsPerPage),
-                this.fetchArticles();
+                this.fetchQuestions();
             },
             type: function() {
-              this.resetPagination(), this.fetchArticles();
+              this.resetPagination(), this.fetchQuestions();
             },
             author: function() {
-              this.resetPagination(), this.fetchArticles();
+              this.resetPagination(), this.fetchQuestions();
             },
             tag: function() {
-              this.resetPagination(), this.fetchArticles();
+              this.resetPagination(), this.fetchQuestions();
             },
             favorited: function() {
-              this.resetPagination(), this.fetchArticles();
+              this.resetPagination(), this.fetchQuestions();
             }
           },
           mounted: function() {
-            this.fetchArticles();
+            this.fetchQuestions();
           },
           methods: {
-            fetchArticles: function() {
+            fetchQuestions: function() {
               this.$store.dispatch(D["m"], this.listConfig);
             },
             resetPagination: function() {
@@ -543,31 +543,31 @@
             r = t._self._c || e;
           return r(
             "div",
-            { staticClass: "article-meta" },
+            { staticClass: "question-meta" },
             [
               r("div", { staticClass: "info" }, [
                 r("span", { staticClass: "date" }, [
-                  t._v(t._s(t._f("date")(t.article.createdAt)))
+                  t._v(t._s(t._f("date")(t.question.createdAt)))
                 ])
               ]),
               t.actions
-                ? r("rwv-article-actions", {
-                    attrs: { article: t.article, canModify: t.isCurrentUser() }
+                ? r("rwv-question-actions", {
+                    attrs: { question: t.question, canModify: t.isCurrentUser() }
                   })
                 : r(
                     "button",
                     {
                       staticClass: "btn btn-sm pull-xs-right",
                       class: {
-                        "btn-primary": t.article.favorited,
-                        "btn-outline-primary": !t.article.favorited
+                        "btn-primary": t.question.favorited,
+                        "btn-outline-primary": !t.question.favorited
                       },
                       on: { click: t.toggleFavorite }
                     },
                     [
                       r("i", { staticClass: "ion-heart" }),
                       r("span", { staticClass: "counter" }, [
-                        t._v(" " + t._s(t.article.favoritesCount) + " ")
+                        t._v(" " + t._s(t.question.favoritesCount) + " ")
                       ])
                     ]
                   )
@@ -590,7 +590,7 @@
                     "router-link",
                     {
                       staticClass: "btn btn-sm btn-outline-secondary",
-                      attrs: { to: t.editArticleLink }
+                      attrs: { to: t.editQuestionLink }
                     },
                     [
                       r("i", { staticClass: "ion-edit" }),
@@ -602,7 +602,7 @@
                     "button",
                     {
                       staticClass: "btn btn-outline-danger btn-sm",
-                      on: { click: t.deleteArticle }
+                      on: { click: t.deleteQuestion }
                     },
                     [
                       r("i", { staticClass: "ion-trash-a" }),
@@ -639,7 +639,7 @@
                     r("i", { staticClass: "ion-heart" }),
                     r("span", [t._v(" ")]),
                     r("span", {
-                      domProps: { textContent: t._s(t.favoriteArticleLabel) }
+                      domProps: { textContent: t._s(t.favoriteQuestionLabel) }
                     }),
                     r("span", [t._v(" ")]),
                     r("span", {
@@ -685,52 +685,52 @@
         return t;
       }
       var h = {
-          name: "RwvArticleActions",
+          name: "RwvQuestionActions",
           props: {
-            article: { type: Object, required: !0 },
+            question: { type: Object, required: !0 },
             canModify: { type: Boolean, required: !0 }
           },
           computed: p({}, Object(s["b"])(["profile", "isAuthenticated"]), {
-            editArticleLink: function() {
+            editQuestionLink: function() {
               return {
-                name: "article-edit",
-                params: { slug: this.article.slug }
+                name: "question-edit",
+                params: { slug: this.question.slug }
               };
             },
             toggleFavoriteButtonClasses: function() {
               return {
-                "btn-primary": this.article.favorited,
-                "btn-outline-primary": !this.article.favorited
+                "btn-primary": this.question.favorited,
+                "btn-outline-primary": !this.question.favorited
               };
             },
             followUserLabel: function() {
               return ""
                 .concat(this.profile.following ? "Unfollow" : "Follow", " ")
-                .concat(this.article.author.username);
+                .concat(this.question.author.username);
             },
-            favoriteArticleLabel: function() {
-              return this.article.favorited
-                ? "Unfavorite Article"
-                : "Favorite Article";
+            favoriteQuestionLabel: function() {
+              return this.question.favorited
+                ? "Unfavorite Question"
+                : "Favorite Question";
             },
             favoriteCounter: function() {
-              return "(".concat(this.article.favoritesCount, ")");
+              return "(".concat(this.question.favoritesCount, ")");
             }
           }),
           methods: {
             toggleFavorite: function() {
               if (this.isAuthenticated) {
-                var t = this.article.favorited ? l["k"] : l["j"];
-                this.$store.dispatch(t, this.article.slug);
+                var t = this.question.favorited ? l["k"] : l["j"];
+                this.$store.dispatch(t, this.question.slug);
               } else this.$router.push({ name: "login" });
             },
             toggleFollow: function() {
               if (this.isAuthenticated) {
-                var t = this.article.following ? l["q"] : l["p"];
+                var t = this.question.following ? l["q"] : l["p"];
                 this.$store.dispatch(t, { username: this.profile.username });
               } else this.$router.push({ name: "login" });
             },
-            deleteArticle: (function() {
+            deleteQuestion: (function() {
               var t = Object(u["a"])(
                 regeneratorRuntime.mark(function t() {
                   return regeneratorRuntime.wrap(
@@ -741,7 +741,7 @@
                             return (
                               (t.prev = 0),
                               (t.next = 3),
-                              this.$store.dispatch(l["a"], this.article.slug)
+                              this.$store.dispatch(l["a"], this.question.slug)
                             );
                           case 3:
                             this.$router.push("/"), (t.next = 9);
@@ -804,10 +804,10 @@
         return t;
       }
       var P = {
-          name: "RwvArticleMeta",
-          components: { RwvArticleActions: b },
+          name: "RwvQuestionMeta",
+          components: { RwvQuestionActions: b },
           props: {
-            article: { type: Object, required: !0 },
+            question: { type: Object, required: !0 },
             actions: { type: Boolean, required: !1, default: !1 }
           },
           computed: m({}, Object(s["b"])(["currentUser", "isAuthenticated"])),
@@ -815,14 +815,14 @@
             isCurrentUser: function() {
               return (
                 !(
-                  !this.currentUser.username || !this.article.author.username
-                ) && this.currentUser.username === this.article.author.username
+                  !this.currentUser.username || !this.question.author.username
+                ) && this.currentUser.username === this.question.author.username
               );
             },
             toggleFavorite: function() {
               if (this.isAuthenticated) {
-                var t = this.article.favorited ? l["k"] : l["j"];
-                this.$store.dispatch(t, this.article.slug);
+                var t = this.question.favorited ? l["k"] : l["j"];
+                this.$store.dispatch(t, this.question.slug);
               } else this.$router.push({ name: "login" });
             }
           }

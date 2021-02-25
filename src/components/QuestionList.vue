@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div v-if="isLoading" class="article-preview">Loading articles...</div>
+    <div v-if="isLoading" class="question-preview">Loading questions...</div>
     <div v-else>
-      <div v-if="articles.length === 0" class="article-preview">
-        No articles are here... yet.
+      <div v-if="questions.length === 0" class="question-preview">
+        No questions are here... yet.
       </div>
-      <RwvArticlePreview
-        v-for="(article, index) in articles"
-        :article="article"
-        :key="article.title + index"
+      <RwvQuestionPreview
+        v-for="(question, index) in questions"
+        :question="question"
+        :key="question.title + index"
       />
       <VPagination :pages="pages" :currentPage.sync="currentPage" />
     </div>
@@ -17,14 +17,14 @@
 
 <script>
 import { mapGetters } from "vuex";
-import RwvArticlePreview from "./VArticlePreview";
+import RwvQuestionPreview from "./VQuestionPreview";
 import VPagination from "./VPagination";
 import { FETCH_ARTICLES } from "../store/actions.type";
 
 export default {
-  name: "RwvArticleList",
+  name: "RwvQuestionList",
   components: {
-    RwvArticlePreview,
+    RwvQuestionPreview,
     VPagination
   },
   props: {
@@ -78,45 +78,45 @@ export default {
       };
     },
     pages() {
-      if (this.isLoading || this.articlesCount <= this.itemsPerPage) {
+      if (this.isLoading || this.questionsCount <= this.itemsPerPage) {
         return [];
       }
-      if (!this.articlesCount) {
+      if (!this.questionsCount) {
         return [];
       }
       return [
-        ...Array(Math.ceil(this.articlesCount / this.itemsPerPage)).keys()
+        ...Array(Math.ceil(this.questionsCount / this.itemsPerPage)).keys()
       ].map(e => e + 1);
     },
-    ...mapGetters(["articlesCount", "isLoading", "articles"])
+    ...mapGetters(["questionsCount", "isLoading", "questions"])
   },
   watch: {
     currentPage(newValue) {
       this.listConfig.filters.offset = (newValue - 1) * this.itemsPerPage;
-      this.fetchArticles();
+      this.fetchQuestions();
     },
     type() {
       this.resetPagination();
-      this.fetchArticles();
+      this.fetchQuestions();
     },
     author() {
       this.resetPagination();
-      this.fetchArticles();
+      this.fetchQuestions();
     },
     tag() {
       this.resetPagination();
-      this.fetchArticles();
+      this.fetchQuestions();
     },
     favorited() {
       this.resetPagination();
-      this.fetchArticles();
+      this.fetchQuestions();
     }
   },
   mounted() {
-    this.fetchArticles();
+    this.fetchQuestions();
   },
   methods: {
-    fetchArticles() {
+    fetchQuestions() {
       this.$store.dispatch(FETCH_ARTICLES, this.listConfig);
     },
     resetPagination() {

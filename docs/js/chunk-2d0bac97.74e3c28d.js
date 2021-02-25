@@ -11,13 +11,13 @@
           return l(
             "div",
             { staticClass: "home-global" },
-            [l("RwvArticleList", { attrs: { type: "all" } })],
+            [l("RwvQuestionList", { attrs: { type: "all" } })],
             1
           );
         },
         a = [],
         s = l("64e5"),
-        c = { name: "rwv-home-global", components: { RwvArticleList: s["a"] } },
+        c = { name: "rwv-home-global", components: { RwvQuestionList: s["a"] } },
         o = c,
         i = l("2877"),
         r = Object(i["a"])(o, n, a, !1, null, null, null);

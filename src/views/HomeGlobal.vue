@@ -1,13 +1,13 @@
 <template>
-  <div class="home-global"><RwvArticleList type="all" /></div>
+  <div class="home-global"><RwvQuestionList type="all" /></div>
 </template>
 <script>
-import RwvArticleList from "@/components/ArticleList";
+import RwvQuestionList from "@/components/QuestionList";
 
 export default {
   name: "rwv-home-global",
   components: {
-    RwvArticleList
+    RwvQuestionList
   }
 };
 </script>

@@ -1,4 +1,4 @@
-import { TagsService, ArticlesService } from "@/common/api.service";
+import { TagsService, QuestionsService } from "@/common/api.service";
 import { FETCH_ARTICLES, FETCH_TAGS } from "./actions.type";
 import {
   FETCH_START,
@@ -9,17 +9,17 @@ import {
 
 const state = {
   tags: [],
-  articles: [],
+  questions: [],
   isLoading: true,
-  articlesCount: 0
+  questionsCount: 0
 };
 
 const getters = {
-  articlesCount(state) {
-    return state.articlesCount;
+  questionsCount(state) {
+    return state.questionsCount;
   },
-  articles(state) {
-    return state.articles;
+  questions(state) {
+    return state.questions;
   },
   isLoading(state) {
     return state.isLoading;
@@ -32,7 +32,7 @@ const getters = {
 const actions = {
   [FETCH_ARTICLES]({ commit }, params) {
     commit(FETCH_START);
-    return ArticlesService.query(params.type, params.filters)
+    return QuestionsService.query(params.type, params.filters)
       .then(({ data }) => {
         commit(FETCH_END, data);
       })
@@ -56,25 +56,25 @@ const mutations = {
   [FETCH_START](state) {
     state.isLoading = true;
   },
-  [FETCH_END](state, { articles, articlesCount }) {
-    state.articles = articles;
-    state.articlesCount = articlesCount;
+  [FETCH_END](state, { questions, questionsCount }) {
+    state.questions = questions;
+    state.questionsCount = questionsCount;
     state.isLoading = false;
   },
   [SET_TAGS](state, tags) {
     state.tags = tags;
   },
   [UPDATE_ARTICLE_IN_LIST](state, data) {
-    state.articles = state.articles.map(article => {
-      if (article.slug !== data.slug) {
-        return article;
+    state.questions = state.questions.map(question => {
+      if (question.slug !== data.slug) {
+        return question;
       }
       // We could just return data, but it seems dangerous to
       // mix the results of different api calls, so we
       // protect ourselves by copying the information.
-      article.favorited = data.favorited;
-      article.favoritesCount = data.favoritesCount;
-      return article;
+      question.favorited = data.favorited;
+      question.favoritesCount = data.favoritesCount;
+      return question;
     });
   }
 };

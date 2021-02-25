@@ -52,7 +52,7 @@
             style="margin-top: 11%"
             class="btn btn-sm btn-primary"
             active-class="active"
-            :to="{ name: 'article-edit' }"
+            :to="{ name: 'question-edit' }"
           >
             NEW QUESTION
           </router-link>

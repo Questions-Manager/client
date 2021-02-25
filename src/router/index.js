@@ -51,7 +51,7 @@ export default new Router({
         {
           path: "",
           name: "profile",
-          component: () => import("@/views/ProfileArticles")
+          component: () => import("@/views/ProfileQuestions")
         },
         {
           name: "profile-favorites",
@@ -61,16 +61,16 @@ export default new Router({
       ]
     },
     {
-      name: "article",
-      path: "/articles/:slug",
-      component: () => import("@/views/Article"),
+      name: "question",
+      path: "/questions/:slug",
+      component: () => import("@/views/Question"),
       props: true
     },
     {
-      name: "article-edit",
+      name: "question-edit",
       path: "/editor/:slug?",
       props: true,
-      component: () => import("@/views/ArticleEdit")
+      component: () => import("@/views/QuestionEdit")
     }
   ]
 });

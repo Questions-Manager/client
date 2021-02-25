@@ -1,14 +1,14 @@
 <template>
-  <div class="home-tag"><RwvArticleList :tag="tag"></RwvArticleList></div>
+  <div class="home-tag"><RwvQuestionList :tag="tag"></RwvQuestionList></div>
 </template>
 
 <script>
-import RwvArticleList from "@/components/ArticleList";
+import RwvQuestionList from "@/components/QuestionList";
 
 export default {
   name: "RwvHomeTag",
   components: {
-    RwvArticleList
+    RwvQuestionList
   },
   computed: {
     tag() {

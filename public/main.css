@@ -22,7 +22,7 @@ body {
   margin: 0
 }
 
-article,
+question,
 aside,
 details,
 figcaption,
@@ -7372,13 +7372,13 @@ footer .attribution {
   text-decoration: inherit !important
 }
 
-.article-meta {
+.question-meta {
   display: block;
   position: relative;
   font-weight: 300
 }
 
-.article-meta img {
+.question-meta img {
   display: inline-block;
   vertical-align: middle;
   height: 32px;
@@ -7386,40 +7386,40 @@ footer .attribution {
   border-radius: 30px
 }
 
-.article-meta .info {
+.question-meta .info {
   margin: 0 1.5rem 0 .3rem;
   display: inline-block;
   vertical-align: middle;
   line-height: 1rem
 }
 
-.article-meta .info .author {
+.question-meta .info .author {
   display: block;
   font-weight: 500 !important
 }
 
-.article-meta .info .date {
+.question-meta .info .date {
   color: #bbb;
   font-size: .8rem;
   display: block
 }
 
-.article-preview {
+.question-preview {
   border-bottom: 1px solid rgba(0, 0, 0, .1);
   padding: 1.5rem 0
 }
 
-.article-preview .article-meta {
+.question-preview .question-meta {
   margin: 0 0 1rem
 }
 
-.article-preview .preview-link h1 {
+.question-preview .preview-link h1 {
   font-weight: 600 !important;
   font-size: 1.5rem !important;
   margin-bottom: 3px
 }
 
-.article-preview .preview-link p {
+.question-preview .preview-link p {
   font-weight: 300;
   font-size: 24px;
   color: #999;
@@ -7428,7 +7428,7 @@ footer .attribution {
   line-height: 1.3rem
 }
 
-.article-preview .preview-link span {
+.question-preview .preview-link span {
   max-width: 30%;
   font-size: .8rem;
   font-weight: 300;
@@ -7436,13 +7436,13 @@ footer .attribution {
   vertical-align: middle
 }
 
-.article-preview .preview-link ul {
+.question-preview .preview-link ul {
   float: right;
   max-width: 50%;
   vertical-align: top
 }
 
-.article-preview .preview-link ul li {
+.question-preview .preview-link ul li {
   font-weight: 300;
   font-size: .8rem !important;
   padding-top: 0 !important;
@@ -7488,90 +7488,90 @@ footer .attribution {
   margin-bottom: .2rem
 }
 
-.article-page .banner {
+.question-page .banner {
   padding: 2rem 0
 }
 
-.article-page .banner h1 {
+.question-page .banner h1 {
   font-size: 2.8rem;
   font-weight: 600
 }
 
-.article-page .banner .btn {
+.question-page .banner .btn {
   opacity: .8
 }
 
-.article-page .banner .btn:hover {
+.question-page .banner .btn:hover {
   transition: .1s all;
   opacity: 1
 }
 
-.article-page .banner .article-meta {
+.question-page .banner .question-meta {
   margin: 2rem 0 0
 }
 
-.article-page .banner .article-meta .author {
+.question-page .banner .question-meta .author {
   color: #fff
 }
 
-.article-page .article-content p {
+.question-page .question-content p {
   font-family: 'source serif pro', serif;
   font-size: 1.2rem;
   line-height: 1.8rem;
   margin-bottom: 2rem
 }
 
-.article-page .article-content h1,
-.article-page .article-content h2,
-.article-page .article-content h3,
-.article-page .article-content h4,
-.article-page .article-content h5,
-.article-page .article-content h6 {
+.question-page .question-content h1,
+.question-page .question-content h2,
+.question-page .question-content h3,
+.question-page .question-content h4,
+.question-page .question-content h5,
+.question-page .question-content h6 {
   font-weight: 500 !important;
   margin: 1.6rem 0 1rem
 }
 
-.article-page .article-actions {
+.question-page .question-actions {
   text-align: center;
   margin: 1.5rem 0 3rem
 }
 
-.article-page .article-actions .article-meta .info {
+.question-page .question-actions .question-meta .info {
   text-align: left
 }
 
-.article-page .comment-form .card-block {
+.question-page .comment-form .card-block {
   padding: 0
 }
 
-.article-page .comment-form .card-block textarea {
+.question-page .comment-form .card-block textarea {
   border: 0;
   padding: 1.25rem
 }
 
-.article-page .comment-form .card-footer .btn {
+.question-page .comment-form .card-footer .btn {
   font-weight: 700;
   float: right
 }
 
-.article-page .comment-form .card-footer .comment-author-img {
+.question-page .comment-form .card-footer .comment-author-img {
   height: 30px;
   width: 30px
 }
 
-.article-page .card {
+.question-page .card {
   border: 1px solid #e5e5e5;
   box-shadow: none !important
 }
 
-.article-page .card .card-footer {
+.question-page .card .card-footer {
   border-top: 1px solid #e5e5e5;
   box-shadow: none !important;
   font-size: .8rem;
   font-weight: 300
 }
 
-.article-page .card .comment-author-img {
+.question-page .card .comment-author-img {
   display: inline-block;
   vertical-align: middle;
   height: 20px;
@@ -7579,31 +7579,31 @@ footer .attribution {
   border-radius: 30px
 }
 
-.article-page .card .comment-author {
+.question-page .card .comment-author {
   display: inline-block;
   vertical-align: middle
 }
 
-.article-page .card .date-posted {
+.question-page .card .date-posted {
   display: inline-block;
   vertical-align: middle;
   margin-left: 5px;
   color: #bbb
 }
 
-.article-page .card .mod-options {
+.question-page .card .mod-options {
   float: right;
   color: #333;
   font-size: 1rem
 }
 
-.article-page .card .mod-options i {
+.question-page .card .mod-options i {
   margin-left: 5px;
   opacity: .6;
   cursor: pointer
 }
 
-.article-page .card .mod-options i:hover {
+.question-page .card .mod-options i:hover {
   opacity: 1
 }
 
@@ -7637,7 +7637,7 @@ footer .attribution {
   border: 1px solid #999
 }
 
-.profile-page .articles-toggle {
+.profile-page .questions-toggle {
   margin: 1.5rem 0 -1px
 }
 

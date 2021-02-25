@@ -1,15 +1,18 @@
 <template>
   <!-- Used when user is also author -->
   <span v-if="canModify">
-    <router-link class="btn btn-sm btn-outline-secondary" :to="editArticleLink">
+    <router-link
+      class="btn btn-sm btn-outline-secondary"
+      :to="editQuestionLink"
+    >
       <i class="ion-edit"></i> <span>&nbsp;Edit</span>
     </router-link>
     <span>&nbsp;&nbsp;</span>
-    <button class="btn btn-outline-danger btn-sm" @click="deleteArticle">
+    <button class="btn btn-outline-danger btn-sm" @click="deleteQuestion">
       <i class="ion-trash-a"></i> <span>&nbsp;Delete</span>
     </button>
   </span>
-  <!-- Used in ArticleView when not author -->
+  <!-- Used in QuestionView when not author -->
   <span v-else>
     <button class="btn btn-sm btn-outline-secondary" @click="toggleFollow">
       <i class="ion-plus-round"></i> <span>&nbsp;</span>
@@ -22,7 +25,7 @@
       :class="toggleFavoriteButtonClasses"
     >
       <i class="ion-heart"></i> <span>&nbsp;</span>
-      <span v-text="favoriteArticleLabel" /> <span>&nbsp;</span>
+      <span v-text="favoriteQuestionLabel" /> <span>&nbsp;</span>
       <span class="counter" v-text="favoriteCounter" />
     </button>
   </span>
@@ -39,32 +42,34 @@ import {
 } from "@/store/actions.type";
 
 export default {
-  name: "RwvArticleActions",
+  name: "RwvQuestionActions",
   props: {
-    article: { type: Object, required: true },
+    question: { type: Object, required: true },
     canModify: { type: Boolean, required: true }
   },
   computed: {
     ...mapGetters(["profile", "isAuthenticated"]),
-    editArticleLink() {
-      return { name: "article-edit", params: { slug: this.article.slug } };
+    editQuestionLink() {
+      return { name: "question-edit", params: { slug: this.question.slug } };
     },
     toggleFavoriteButtonClasses() {
       return {
-        "btn-primary": this.article.favorited,
-        "btn-outline-primary": !this.article.favorited
+        "btn-primary": this.question.favorited,
+        "btn-outline-primary": !this.question.favorited
       };
     },
     followUserLabel() {
       return `${this.profile.following ? "Unfollow" : "Follow"} ${
-        this.article.author.username
+        this.question.author.username
       }`;
     },
-    favoriteArticleLabel() {
-      return this.article.favorited ? "Unfavorite Article" : "Favorite Article";
+    favoriteQuestionLabel() {
+      return this.question.favorited
+        ? "Unfavorite Question"
+        : "Favorite Question";
     },
     favoriteCounter() {
-      return `(${this.article.favoritesCount})`;
+      return `(${this.question.favoritesCount})`;
     }
   },
   methods: {
@@ -73,24 +78,24 @@ export default {
         this.$router.push({ name: "login" });
         return;
       }
-      const action = this.article.favorited ? FAVORITE_REMOVE : FAVORITE_ADD;
-      this.$store.dispatch(action, this.article.slug);
+      const action = this.question.favorited ? FAVORITE_REMOVE : FAVORITE_ADD;
+      this.$store.dispatch(action, this.question.slug);
     },
     toggleFollow() {
       if (!this.isAuthenticated) {
         this.$router.push({ name: "login" });
         return;
       }
-      const action = this.article.following
+      const action = this.question.following
         ? FETCH_PROFILE_UNFOLLOW
         : FETCH_PROFILE_FOLLOW;
       this.$store.dispatch(action, {
         username: this.profile.username
       });
     },
-    async deleteArticle() {
+    async deleteQuestion() {
       try {
-        await this.$store.dispatch(ARTICLE_DELETE, this.article.slug);
+        await this.$store.dispatch(ARTICLE_DELETE, this.question.slug);
         this.$router.push("/");
       } catch (err) {
         console.error(err);
