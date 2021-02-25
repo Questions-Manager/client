@@ -19,7 +19,7 @@
       <span v-text="followUserLabel" />
     </button>
     <span>&nbsp;&nbsp;</span>
-    <button
+    <!-- <button
       class="btn btn-sm"
       @click="toggleFavorite"
       :class="toggleFavoriteButtonClasses"
@@ -27,7 +27,7 @@
       <i class="ion-heart"></i> <span>&nbsp;</span>
       <span v-text="favoriteQuestionLabel" /> <span>&nbsp;</span>
       <span class="counter" v-text="favoriteCounter" />
-    </button>
+    </button> -->
   </span>
 </template>
 

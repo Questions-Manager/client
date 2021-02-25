@@ -20,7 +20,7 @@
       :question="question"
       :canModify="isCurrentUser()"
     ></rwv-question-actions>
-    <button
+    <!-- <button
       v-else
       class="btn btn-sm pull-xs-right"
       @click="toggleFavorite"
@@ -31,7 +31,7 @@
     >
       <i class="ion-heart"></i>
       <span class="counter"> {{ question.favoritesCount }} </span>
-    </button>
+    </button> -->
   </div>
 </template>
 
