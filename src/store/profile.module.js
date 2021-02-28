@@ -22,9 +22,6 @@ const actions = {
     const { username } = payload;
     return ApiService.get("profiles", username)
       .then(({ data }) => {
-        if (!data.profile.image) {
-          data.profile.image = "/img/avatar.png";
-        }
         context.commit(SET_PROFILE, data.profile);
         return data;
       })

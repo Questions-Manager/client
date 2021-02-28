@@ -37,7 +37,7 @@
                   class="form-control"
                   placeholder="Tags"
                   v-model="tagInput"
-                  @keypress.enter.prevent="addTag(tagInput)"
+                  @keypress.enter.prevent="addTag()"
                 />
                 <div class="tag-list">
                   <span
@@ -141,8 +141,8 @@ export default {
     removeTag(tag) {
       this.$store.dispatch(ARTICLE_EDIT_REMOVE_TAG, tag);
     },
-    addTag(tag) {
-      this.$store.dispatch(ARTICLE_EDIT_ADD_TAG, tag);
+    addTag() {
+      this.$store.dispatch(ARTICLE_EDIT_ADD_TAG, this.tagInput);
       this.tagInput = null;
     }
   }

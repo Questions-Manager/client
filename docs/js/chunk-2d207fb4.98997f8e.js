@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d207fb4"],{a39e:function(e,t,n){"use strict";n.r(t);var s=function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"home-my-feed"},[n("RwvQuestionList",{attrs:{type:"feed"}})],1)},a=[],o=n("4f51"),i={name:"rwv-home-my-feed",components:{RwvQuestionList:o["a"]}},u=i,c=n("2877"),l=Object(c["a"])(u,s,a,!1,null,null,null);t["default"]=l.exports}}]);
+//# sourceMappingURL=chunk-2d207fb4.98997f8e.js.map

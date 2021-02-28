@@ -5,14 +5,17 @@
     </div>
     <div class="card-footer">
       <a href="" class="comment-author">
-        <img :src="comment.author.image" class="comment-author-img" />
+        <img
+          :src="comment.author.image || '/img/avatar.png'"
+          class="comment-author-img"
+        />
       </a>
-      <router-link
+      <!-- <router-link
         class="comment-author"
         :to="{ name: 'profile', params: { username: comment.author.username } }"
       >
         {{ comment.author.username }}
-      </router-link>
+      </router-link> -->
       <span class="date-posted">{{ comment.createdAt | date }}</span>
       <span v-if="isCurrentUser" class="mod-options">
         <i class="ion-trash-a" @click="destroy(slug, comment.id)"></i>

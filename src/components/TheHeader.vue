@@ -78,12 +78,21 @@
             }"
           >
             <img
-              :src="currentUser.image"
+              :src="currentUser.image || '/img/avatar.png'"
               class="user-img"
               style="width: 39px; height: 39px; border-radius: 50%"
             />
             <!-- {{ currentUser.username }} -->
           </router-link>
+        </li>
+        <li class="nav-item">
+          <button
+            @click="logout"
+            class="btn btn-sm btn-outline-secondary action-btn"
+            style="margin-top: 10px"
+          >
+            Log out
+          </button>
         </li>
       </ul>
     </div>
@@ -92,11 +101,19 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { LOGOUT } from "@/store/actions.type";
 
 export default {
   name: "RwvHeader",
   computed: {
     ...mapGetters(["currentUser", "isAuthenticated"])
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch(LOGOUT).then(() => {
+        this.$router.push({ name: "home" });
+      });
+    }
   }
 };
 </script>

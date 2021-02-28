@@ -17,9 +17,6 @@ const state = {
 
 const getters = {
   currentUser(state) {
-    if (state.user && !state.user.image) {
-      state.user.image = "/img/avatar.png";
-    }
     return state.user;
   },
   isAuthenticated(state) {
