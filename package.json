@@ -45,7 +45,7 @@
   },
   "name": "realworld-vue",
   "scripts": {
-    "build": "cross-env BABEL_ENV=prod vue-cli-service build --dest docs && cp CNAME docs/CNAME",
+    "build": "cross-env BABEL_ENV=prod vue-cli-service build --dest docs --mode production && cp CNAME docs/CNAME",
     "lint": "vue-cli-service lint",
     "serve": "cross-env BABEL_ENV=dev vue-cli-service serve",
     "test": "cross-env BABEL_ENV=test jest --coverage"
