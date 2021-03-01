@@ -103,6 +103,11 @@ export const mutations = {
     state.comments = comments;
   },
   [TAG_ADD](state, tag) {
+    if (!state.question.tagList) {
+      console.log(
+        "Question tagList is not retrieved properly and that's why new tags can't be added."
+      );
+    }
     state.question.tagList = state.question.tagList.concat([tag]);
   },
   [TAG_REMOVE](state, tag) {

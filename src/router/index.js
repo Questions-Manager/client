@@ -22,6 +22,7 @@ export default new Router({
         {
           path: "tag/:tag",
           name: "home-tag",
+          props: true,
           component: () => import("@/views/HomeTag")
         }
       ]
